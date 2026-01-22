@@ -1,6 +1,8 @@
 project:
   type: book
   output-dir: docs
+  post-render:
+    - touch docs/.nojekyll
 
 book:
   title: "Structural Econometrics with Julia"
