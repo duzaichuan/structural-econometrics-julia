@@ -17,7 +17,7 @@ book:
       - models/savings.qmd
       - models/entry-exit.qmd
       - models/dynamic-labor-supply.qmd
-    - part: why_models.qmd
+    - why_models.qmd
     - part: identification.qmd
     - part: extremum-estimators.qmd
     - part: discrete-choice.qmd
