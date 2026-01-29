@@ -7,13 +7,13 @@ Before we dive into methods, it will be helpful to review a number of important 
 
 ## When you possibly don't need a model.
 
-A lot of students, when they write their first paper, end up posing simple questions like "What is the effect of policy $X$ on outcome $Y$"? Often, answering these questions requires nothing more than simple statistical models of causality (such as the [Potential Outcomes Model](https://en.wikipedia.org/wiki/Rubin_causal_model) or the  [Generalized Roy Model](models/generalized_roy.qmd), which formalize causality in terms of potential outcomes).
+A lot of students, when they write their first paper, end up posing simple questions like "What is the effect of policy $X$ on outcome $Y$"? Often, answering these questions requires nothing more than simple statistical models of causality (such as the [Potential Outcomes Model](https://en.wikipedia.org/wiki/Rubin_causal_model) or the  [Generalized Roy Model](../models/generalized_roy.qmd), which formalize causality in terms of potential outcomes).
 
-In particular, if your question concerns the causal effect of an observed historical change in some variable, you likely won't anything more elaborate than these simple frameworks. Consider below three examples of quasi-experimental variation from our [prototype models](models.qmd) that answer particular research questions without needing specification of the underlying models.
+In particular, if your question concerns the causal effect of an observed historical change in some variable, you likely won't anything more elaborate than these simple frameworks. Consider below three examples of quasi-experimental variation from our [prototype models](../models.qmd) that answer particular research questions without needing specification of the underlying models.
 
 ### Social Security
 
-In the [life-cycle savings model](models/savings.qmd), consider the inclusion of a social security system that provides income at older ages. The budget constraint becomes:
+In the [life-cycle savings model](../models/savings.qmd), consider the inclusion of a social security system that provides income at older ages. The budget constraint becomes:
 
 $$ c_{t} + a_{t+1}/(1 + r) \leq (1-\tau)y_{t} + \mathbf{1}\{t\geq 65\}b $$
 
@@ -36,7 +36,7 @@ To proceed, we have only to defend the parallel trends assumption, which many vi
 
 ### Firm Entry
 
-Consider the [firm entry model](models/entry-exit.qmd). Suppose you have panel data $(A_{m,t,1},A_{m,t,2},Z_{m,t})_{m=1,t=1}^{M,T}$ on a set of markets (indexed by $m$) in a number of periods (indexed by $t$). Recall that $A_{m,t,j}$ indicates whether firm $j$ is active in market $m$ at time $t$, and firm entry occurs when $A_{m,t+1,j}-A_{m,t,j}=1$. Recall that $X_{m}$ is a a market-level factor that is unobservable here. Let $Z\in\{0,1\}$ indicate the presence of a policy that applies locally to market $m$. For the purposes of this example, let's say it's a local minimum wage policy. To incorporate the policy $Z$, suppose we write:
+Consider the [firm entry model](../models/entry-exit.qmd). Suppose you have panel data $(A_{m,t,1},A_{m,t,2},Z_{m,t})_{m=1,t=1}^{M,T}$ on a set of markets (indexed by $m$) in a number of periods (indexed by $t$). Recall that $A_{m,t,j}$ indicates whether firm $j$ is active in market $m$ at time $t$, and firm entry occurs when $A_{m,t+1,j}-A_{m,t,j}=1$. Recall that $X_{m}$ is a a market-level factor that is unobservable here. Let $Z\in\{0,1\}$ indicate the presence of a policy that applies locally to market $m$. For the purposes of this example, let's say it's a local minimum wage policy. To incorporate the policy $Z$, suppose we write:
 
 $$ u_{1}(x,a,d') = \phi_{0} + \phi_{1}x - \phi_{2}d' - \phi_{3}(1-a) + \phi_{4}z $$
 
@@ -81,9 +81,9 @@ Having covered these three (perfectly valid) applications of quasi-experimental 
 
 Perhaps the most obvious reason to use a model is when you research question simply cannot be articulated without one. Some of the most useful insights from economic modeling are statements about economic efficiency, the potential for policies to resolve market inefficiencies, and the design of policies. Some examples:
 
-1. In the [labor supply model](models/dynamic-labor-supply.qmd), given a particular weighted welfare objective, what does the optimal system of taxes and transfers look like?
-2. What is the cheapest way to incentivize competition between two firms in [dynamic duopoly](models/dynamic-labor-supply.qmd)?
-3. What is are the welfare costs of incomplete markets in the [life-cycle savings model](models/savings.qmd)?.
+1. In the [labor supply model](../models/dynamic-labor-supply.qmd), given a particular weighted welfare objective, what does the optimal system of taxes and transfers look like?
+2. What is the cheapest way to incentivize competition between two firms in [dynamic duopoly](../models/dynamic-labor-supply.qmd)?
+3. What is are the welfare costs of incomplete markets in the [life-cycle savings model](../models/savings.qmd)?.
 
 ### To make welfare calculations
 
@@ -263,7 +263,7 @@ Point (2) is essentially an early version of the @lucas1976 critique, while poin
 
 ### Two-Stage Budgeting
 
-Returning to the [life-cycle savings model](/models/savings.qmd), suppose we instead that utility depended on a vector of $K$ commodities $x$ in each period, such that the problem becomes:
+Returning to the [life-cycle savings model](/../models/savings.qmd), suppose we instead that utility depended on a vector of $K$ commodities $x$ in each period, such that the problem becomes:
 $$ V_{t}(p,a,y) = \max_{x,a'}\left\{v(x) + \beta \mathbb{E}_{p',y'|p,y}V_{t+1}(p',a',y')\right\}$$
 subject to:
 $$ p \cdot x + \frac{1}{1+r}a' \leq y_t,\qquad a\geq \underline{a} $$

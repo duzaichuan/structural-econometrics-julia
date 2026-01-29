@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.539">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Structural Econometrics with Julia - Appendix B — Automatic Differentiation</title>
+<title>Appendix B — Automatic Differentiation – Structural Econometrics with Julia</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -57,24 +57,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./performance.html" rel="next">
-<link href="./data.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../appendices/performance.html" rel="next">
+<link href="../appendices/data.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -103,7 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -141,13 +141,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data.html">Appendices</a></li><li class="breadcrumb-item"><a href="./autodiff.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Automatic Differentiation</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendices/data.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendices/autodiff.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Automatic Differentiation</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -159,7 +159,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Structural Econometrics with Julia</a> 
+      <a href="../">Structural Econometrics with Julia</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -171,46 +171,46 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./models.html" class="sidebar-item-text sidebar-link">
+            <a href="../models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Five Prototype Models</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models/generalized_roy.html" class="sidebar-item-text sidebar-link">
+  <a href="../models/generalized_roy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The Generalized Roy Model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models/search.html" class="sidebar-item-text sidebar-link">
+  <a href="../models/search.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Job Search Model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models/savings.html" class="sidebar-item-text sidebar-link">
+  <a href="../models/savings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">A Life-Cycle Savings Model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models/entry-exit.html" class="sidebar-item-text sidebar-link">
+  <a href="../models/entry-exit.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Firm Entry-Exit Model</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./models/dynamic-labor-supply.html" class="sidebar-item-text sidebar-link">
+  <a href="../models/dynamic-labor-supply.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">A Simple Labor Supply Model</span></span></a>
   </div>
 </li>
@@ -218,7 +218,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./why_models.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/why_models.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">How and Why to Use Models</span></span></a>
   </div>
 </li>
@@ -236,34 +236,34 @@ window.Quarto = {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data.html" class="sidebar-item-text sidebar-link">
+  <a href="../appendices/data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./autodiff.html" class="sidebar-item-text sidebar-link active">
+  <a href="../appendices/autodiff.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Automatic Differentiation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./performance.html" class="sidebar-item-text sidebar-link">
+  <a href="../appendices/performance.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Performance Tips</span></span></a>
   </div>
 </li>
@@ -300,7 +300,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data.html">Appendices</a></li><li class="breadcrumb-item"><a href="./autodiff.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Automatic Differentiation</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendices/data.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendices/autodiff.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Automatic Differentiation</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Appendix B — Automatic Differentiation</h1>
 </div>
@@ -346,7 +346,7 @@ window.Quarto = {
 <section id="forwarddiff.jl" class="level3" data-number="B.3.1">
 <h3 data-number="B.3.1" class="anchored" data-anchor-id="forwarddiff.jl"><span class="header-section-number">B.3.1</span> ForwardDiff.jl</h3>
 <p>Forward-mode AD. Simple and robust, works out-of-the-box for most pure Julia code.</p>
-<div id="2b30953d" class="cell" data-execution_count="1">
+<div id="4113d652" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">ForwardDiff</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x) <span class="op">=</span> <span class="fu">sum</span>(x<span class="op">.^</span><span class="fl">2</span>)</span>
@@ -361,7 +361,7 @@ window.Quarto = {
  6.0</code></pre>
 </div>
 </div>
-<div id="84fd4d08" class="cell" data-execution_count="2">
+<div id="d4d83863" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hessian</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ForwardDiff.<span class="fu">hessian</span>(f, x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -375,7 +375,7 @@ window.Quarto = {
 <section id="enzyme.jl" class="level3" data-number="B.3.2">
 <h3 data-number="B.3.2" class="anchored" data-anchor-id="enzyme.jl"><span class="header-section-number">B.3.2</span> Enzyme.jl</h3>
 <p>A high-performance AD engine that works at the LLVM level. Supports both forward and reverse mode. Often the fastest option, especially for code with loops and mutations.</p>
-<div id="eabae94f" class="cell" data-execution_count="3">
+<div id="3ef76b29" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Enzyme</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x) <span class="op">=</span> x[<span class="fl">1</span>]<span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="fu">sin</span>(x[<span class="fl">2</span>])</span>
@@ -396,7 +396,7 @@ window.Quarto = {
 <section id="zygote.jl" class="level3" data-number="B.3.3">
 <h3 data-number="B.3.3" class="anchored" data-anchor-id="zygote.jl"><span class="header-section-number">B.3.3</span> Zygote.jl</h3>
 <p>A source-to-source reverse-mode AD system. Popular in machine learning (used by Flux.jl). Works well for array-heavy code but may struggle with control flow.</p>
-<div id="038b81f9" class="cell" data-execution_count="4">
+<div id="9b5de75c" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Zygote</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x) <span class="op">=</span> <span class="fu">sum</span>(x<span class="op">.^</span><span class="fl">2</span>)</span>
@@ -416,7 +416,7 @@ window.Quarto = {
 <li><p><strong>Use Enzyme for performance-critical code</strong>, especially if you have loops or in-place mutations.</p></li>
 <li><p><strong>Be aware of limitations</strong>: AD systems can fail on code that uses certain constructs (try-catch, foreign function calls, some global variables). When in doubt, test that your gradients match finite differences:</p></li>
 </ol>
-<div id="d04fa9f0" class="cell" data-execution_count="5">
+<div id="b6926482" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">ForwardDiff</span>, <span class="bu">FiniteDiff</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x) <span class="op">=</span> <span class="fu">log</span>(<span class="fl">1</span> <span class="op">+</span> <span class="fu">exp</span>(x[<span class="fl">1</span>] <span class="op">*</span> x[<span class="fl">2</span>])) <span class="op">+</span> x[<span class="fl">3</span>]<span class="op">^</span><span class="fl">2</span></span>
@@ -434,7 +434,7 @@ window.Quarto = {
 <section id="integration-with-optimization" class="level2" data-number="B.5">
 <h2 data-number="B.5" class="anchored" data-anchor-id="integration-with-optimization"><span class="header-section-number">B.5</span> Integration with Optimization</h2>
 <p>Most Julia optimization packages accept AD gradients. Here’s an example with <code>Optim.jl</code>:</p>
-<div id="9ed46756" class="cell" data-execution_count="6">
+<div id="cff9a951" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Optim</span>, <span class="bu">ForwardDiff</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rosenbrock</span>(x) <span class="op">=</span> (<span class="fl">1</span> <span class="op">-</span> x[<span class="fl">1</span>])<span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">100</span><span class="fu">*</span>(x[<span class="fl">2</span>] <span class="op">-</span> x[<span class="fl">1</span>]<span class="op">^</span><span class="fl">2</span>)<span class="op">^</span><span class="fl">2</span></span>
@@ -455,7 +455,7 @@ window.Quarto = {
 <p>Consider a simple probit model:</p>
 <p><span class="math display">\[ D = \mathbf{1}\{X\beta - \nu \geq 0\},\qquad \nu \sim \mathcal{N}(0,1) \]</span></p>
 <p>Here is code to simulate data for this model:</p>
-<div id="c4db7335" class="cell" data-execution_count="7">
+<div id="fdcfd65a" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Random</span>, <span class="bu">Distributions</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">sim_data</span>(X ; γ)</span>
@@ -474,7 +474,7 @@ window.Quarto = {
 <p>Consider the problem of estimating <span class="math inline">\(\gamma\)</span> using maximum likelihood. We will establish the properties of this estimator in class. Here let’s just focus on numerically how to attack the minimization problem. The log-likelihood of the data <code>D</code> given <code>X</code> is:</p>
 <p><span class="math display">\[ \mathcal{L}(\gamma) = \sum_{n}l(D_{n}; X_{n},\gamma) = \sum_{n=1}^{N}D_{n}\log(\Phi(X\gamma)) + (1-D_{n})\log(1-\Phi(X\gamma)) \]</span></p>
 <p>Let’s write up this likelihood function.</p>
-<div id="ed6d9e25" class="cell" data-execution_count="8">
+<div id="0a7fb783" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">log_likelihood</span>(D,X,γ)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    ll <span class="op">=</span> <span class="fl">0</span>.</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> <span class="fu">eachindex</span>(D)</span>
@@ -498,7 +498,7 @@ window.Quarto = {
 <p><span class="math display">\[ \gamma_{k+1} = \gamma_{k} + \lambda_{k}A_{k}\frac{\partial Q}{\partial \gamma} \]</span></p>
 <p>where <span class="math inline">\(Q\)</span> is the function being maximized (or minimized). <span class="math inline">\(A_{k}\)</span> defines a direction in which to search (providing weights on the derivatives) and <span class="math inline">\(\lambda_{k}\)</span> is a scalar variable known as a step-size which is often calculated optimally in each iteration <span class="math inline">\(k\)</span>. For Newton’s method, the matrix <span class="math inline">\(A_{k}\)</span> is the inverse of the Hessian of the objective function <span class="math inline">\(Q\)</span>. Since the hessian can sometimes be expensive to calculate, other methods use approximations to the Hessian that are cheaper to compute.</p>
 <p>Since we have a simple model, we can calculate derivatives relatively easily. Below we’ll compare a hard-coded derivative to this automatic differentiation.</p>
-<div id="488238a6" class="cell" data-execution_count="9">
+<div id="446f711e" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">ForwardDiff</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">deriv_ll</span>(D,X,γ)</span>
@@ -527,25 +527,25 @@ window.Quarto = {
 <span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>[d1 d2 dx]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>2×3 Matrix{Float64}:
- 11.1675  11.1675  11.1675
- 59.9985  59.9985  59.9985</code></pre>
+ 18.585   18.585   18.585
+ 36.7039  36.7039  36.7039</code></pre>
 </div>
 </div>
 <p>Ok so we’re confident that these functions work as intended, but how do they compare in performance?</p>
-<div id="0fd17ef3" class="cell" data-execution_count="10">
+<div id="ffcc2ce4" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> <span class="fu">deriv_ll</span>(D,X,γ);</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> <span class="fu">auto_deriv_ll</span>(D,X,γ);</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@time</span> <span class="fu">auto_deriv2_ll</span>(D,X,γ,dx);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  0.000028 seconds (2 allocations: 80 bytes)
-  0.000044 seconds (7 allocations: 304 bytes)
-  0.000038 seconds</code></pre>
+<pre><code>  0.000021 seconds (2 allocations: 80 bytes)
+  0.000035 seconds (7 allocations: 304 bytes)
+  0.000033 seconds</code></pre>
 </div>
 </div>
 <p>All are quite quick and you can see that we’re not losing much with automatic differentiation. In my experience, the gap between the two methods can narrow for more complicated functions.</p>
 <p>So now let’s try implementing the maximum likelihood estimator using two different gradient-based algorithms: Newton’s Method (which uses the Hessian), and the Broyden–Fletcher–Goldfarb–Shannon (BFGS) algorithm (which updates search direction using changes in the first derivative).</p>
 <p>While Newton’s method requires calculation of the Hessian (second derivatives), BFGS and related methods only require first derivatives. Typically, this makes each iteration quicker but will take more time to converge. Let’s test them.</p>
-<div id="0ccaf061" class="cell" data-execution_count="11">
+<div id="c861895f" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Optim</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">min_objective</span>(x) <span class="op">=</span> <span class="fu">-log_likelihood</span>(D,X,x) <span class="co">#&lt;- Optim assumes that we will minimize a function, hence the negative</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>γ_guess <span class="op">=</span> <span class="fu">zeros</span>(<span class="fl">2</span>)</span>
@@ -557,39 +557,39 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code> ---- Using Newton's Method ------ 
 Iter     Function value   Gradient norm 
-     0     6.931472e+02     9.429516e+02
- * time: 0.012720108032226562
-     1     4.873710e+02     1.564794e+02
- * time: 0.43104004859924316
-     2     4.693793e+02     9.133735e+00
- * time: 0.4315500259399414
-     3     4.693308e+02     2.431698e-03
- * time: 0.4318211078643799
-     4     4.693308e+02     4.359872e-09
- * time: 0.43204617500305176
+     0     6.931472e+02     8.794794e+02
+ * time: 0.011163949966430664
+     1     5.038529e+02     1.424353e+02
+ * time: 0.3925299644470215
+     2     4.896962e+02     5.718137e+00
+ * time: 0.39277005195617676
+     3     4.896776e+02     6.554352e-04
+ * time: 0.39298009872436523
+     4     4.896776e+02     2.812263e-10
+ * time: 0.3931429386138916
  ---- Using BFGS ------ 
 Iter     Function value   Gradient norm 
-     0     6.931472e+02     9.429516e+02
- * time: 7.987022399902344e-5
-     1     4.849950e+02     1.434033e+02
- * time: 0.00822591781616211
-     2     4.825821e+02     1.387009e+02
- * time: 0.00848388671875
-     3     4.696142e+02     2.158030e+01
- * time: 0.008702993392944336
-     4     4.693308e+02     1.473504e-01
- * time: 0.008884906768798828
-     5     4.693308e+02     7.674024e-03
- * time: 0.0090789794921875
-     6     4.693308e+02     3.727930e-07
- * time: 0.009229898452758789
-     7     4.693308e+02     8.768958e-13
- * time: 0.009376049041748047</code></pre>
+     0     6.931472e+02     8.794794e+02
+ * time: 5.507469177246094e-5
+     1     5.022184e+02     1.277309e+02
+ * time: 0.007002115249633789
+     2     4.993056e+02     1.210926e+02
+ * time: 0.007193088531494141
+     3     4.898180e+02     1.538296e+01
+ * time: 0.007416963577270508
+     4     4.896776e+02     7.292141e-02
+ * time: 0.007581949234008789
+     5     4.896776e+02     2.642307e-03
+ * time: 0.007750034332275391
+     6     4.896776e+02     6.079906e-08
+ * time: 0.007950067520141602
+     7     4.896776e+02     3.867739e-14
+ * time: 0.008134126663208008</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>2×3 Matrix{Float64}:
- 0.129586  0.129586  0.1
- 0.56237   0.56237   0.5</code></pre>
+ 0.143143  0.143143  0.1
+ 0.540119  0.540119  0.5</code></pre>
 </div>
 </div>
 </section>
@@ -641,18 +641,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -684,7 +673,45 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -719,7 +746,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -767,7 +798,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      return note.innerHTML;
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -990,12 +1025,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./data.html" class="pagination-link  aria-label=" &lt;span="">
+      <a href="../appendices/data.html" class="pagination-link" aria-label="Data">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./performance.html" class="pagination-link" aria-label="<span class='chapter-number'>C</span>&nbsp; <span class='chapter-title'>Performance Tips</span>">
+      <a href="../appendices/performance.html" class="pagination-link" aria-label="Performance Tips">
         <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Performance Tips</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
